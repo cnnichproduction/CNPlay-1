@@ -1,0 +1,13 @@
+[Unit]
+Description=CN-PLAY first boot setup
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=!/var/lib/cn-play-installed
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/flatpak install --system -y flathub org.pegasus_frontend.Pegasus
+ExecStartPost=/usr/bin/touch /var/lib/cn-play-installed
+
+[Install]
+WantedBy=multi-user.target

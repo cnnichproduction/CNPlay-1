@@ -1,0 +1,11 @@
+#!/bin/bash
+# CN-PLAY fullscreen console session: gamescope + Pegasus Frontend with the CN-PLAY theme
+CFG="$HOME/.var/app/org.pegasus_frontend.Pegasus/config/pegasus-frontend"
+mkdir -p "$CFG/themes"
+rm -rf "$CFG/themes/cn-play"
+cp -r /usr/share/cn-play/theme "$CFG/themes/cn-play"
+cat > "$CFG/settings.txt" <<CONF
+general.theme: themes/cn-play/
+general.fullscreen: true
+CONF
+exec gamescope -f -e -- flatpak run org.pegasus_frontend.Pegasus
